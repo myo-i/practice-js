@@ -1,21 +1,42 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const el = document.querySelector(".title");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const title = document.querySelector(".sub-title");
+//   const cb = function (entries, observe) {
+//     entries.forEach((entry) => {
+//       if (entry.isInteresting) {
+//         // entry.target.classList.add('inview');
+//         console.log("aaa");
+//       } else {
+//         // entry.target.classList.remove('inview');
+//         console.log("in");
+//       }
+//     });
+//   };
 
-  const str = el.innerHTML.trim().split("");
+//   const options = {
+//     root: null,
+//     rootMargin: "-100px 0px",
+//     threshold: [0, 0.5, 1],
+//   };
+//   const io = new IntersectionObserver(cb, options);
+//   io.observe(title);
+// });
 
-  // let concatStr = '';
-
-  // for(let c of str) {
-
-  //     c = c.replace(/\s+/, '&nbsp;');
-
-  //     concatStr += `<span class="char">${c}</span>`;
-
-  // }
-
-  el.innerHTML = str.reduce((acc, curr) => {
-    curr = curr.replace(/\s+/, "&nbsp;");
-
-    return `${acc}<span class="char">${curr}</span>`;
-  }, "");
-});
+// const child = document.querySelector('.sub-title');
+// const cb = function(entries, observer) {
+//     entries.forEach(entry => {
+//         if(entry.isIntersecting) {
+//             entry.target.classList.add('inview');
+//             // observer.unobserve(entry.target);
+//         } else {
+//             entry.target.classList.remove('inview');
+//         }
+//     });
+//     // alert('intersecting');
+// }
+// const options = {
+//     root: null,
+//     rootMargin: "-300px 0px",
+//     threshold: [0, 0.5, 1]
+// };
+// const io = new IntersectionObserver(cb, options);
+// io.observe(child);
