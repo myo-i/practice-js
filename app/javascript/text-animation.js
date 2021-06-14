@@ -42,7 +42,7 @@
 // io.observe(child);
 
 document.addEventListener('DOMContentLoaded', function() {
-  const cont = document.querySelector('.content');
+  const content = document.querySelectorAll('.content');
   const callback = function(entries, observer) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   const io = new IntersectionObserver(callback, options);
-  els.forEach((el) => io.observe(el));
+  content.forEach((el) => io.observe(el));
 })
 
 class TextAnimation {
@@ -73,8 +73,8 @@ class TextAnimation {
 
   splitText() {
     return this.chars.reduce((accu, curr) => {
-      curr = curr.replace(/\s+/, 'nbsp;');
-      accu = `${accu}<span class='char'>${curr}</span>`
+      curr = curr.replace(/\s+/, "&nbsp;");
+      return accu = `${accu}<span class="char">${curr}</span>`;
     },"");
   }
 

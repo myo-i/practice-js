@@ -147,7 +147,7 @@
 // }
 // ここまで模範
 
-@import 'mixin';
+@import "mixin";
 
 section {
   position: relative;
@@ -170,4 +170,46 @@ section {
   color: white;
   font-size: 50px;
   font-weight: 400;
+  opacity: 0;
+
+  &.inview {
+    opacity: 1;
+    & .char {
+      display: inline-block;
+    }
+  }
+
+  & .char {
+    opacity: 0;
+  }
 }
+
+.content.inview .char {
+  @include animation(
+    $name: kf-text-animation,
+    $duration: 0.5s,
+    $timing-function: ease-in-out,
+    $fill-mode: both
+  );
+
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.1s;
+    }
+  }
+}
+
+@keyframes kf-text-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+
+

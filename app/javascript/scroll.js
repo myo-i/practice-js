@@ -1,58 +1,58 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const els = document.querySelectorAll(".title");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const els = document.querySelectorAll(".title");
 
-  const cb = function (entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const ta = new TextAnimation(entry.target);
+//   const cb = function (entries, observer) {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//         const ta = new TextAnimation(entry.target);
 
-        ta.animate();
+//         ta.animate();
 
-        observer.unobserve(entry.target);
+//         observer.unobserve(entry.target);
 
-        // console.log('in');
-      } else {
-        // console.log('out');
-      }
-    });
-  };
+//         // console.log('in');
+//       } else {
+//         // console.log('out');
+//       }
+//     });
+//   };
 
-  const options = {
-    root: null,
+//   const options = {
+//     root: null,
 
-    rootMargin: "0px",
+//     rootMargin: "0px",
 
-    threshold: 0,
-  };
+//     threshold: 0,
+//   };
 
-  const io = new IntersectionObserver(cb, options);
+//   const io = new IntersectionObserver(cb, options);
 
-  els.forEach((el) => io.observe(el));
-});
+//   els.forEach((el) => io.observe(el));
+// });
 
-class TextAnimation {
-  constructor(el) {
-    this.DOM = {};
+// class TextAnimation {
+//   constructor(el) {
+//     this.DOM = {};
 
-    this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
+//     this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
 
-    this.chars = this.DOM.el.innerHTML.trim().split("");
+//     this.chars = this.DOM.el.innerHTML.trim().split("");
 
-    this.DOM.el.innerHTML = this._splitText();
-  }
+//     this.DOM.el.innerHTML = this._splitText();
+//   }
 
-  _splitText() {
-    return this.chars.reduce((acc, curr) => {
-      curr = curr.replace(/\s+/, "&nbsp;");
+//   _splitText() {
+//     return this.chars.reduce((acc, curr) => {
+//       curr = curr.replace(/\s+/, "&nbsp;");
 
-      return `${acc}<span class="char">${curr}</span>`;
-    }, "");
-  }
+//       return `${acc}<span class="char">${curr}</span>`;
+//     }, "");
+//   }
 
-  animate() {
-    this.DOM.el.classList.toggle("inview");
-  }
-}
+//   animate() {
+//     this.DOM.el.classList.toggle("inview");
+//   }
+// }
 
 // class TweenTextAnimation extends TextAnimation {
 //   constructor(el) {
