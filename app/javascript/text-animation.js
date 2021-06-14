@@ -41,44 +41,69 @@
 // const io = new IntersectionObserver(cb, options);
 // io.observe(child);
 
+// ここから模範解答
+// document.addEventListener('DOMContentLoaded', function() {
+//   const content = document.querySelectorAll('.content');
+//   const callback = function(entries, observer) {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//         const ta = new TextAnimation(entry.target);
+//         ta.animate();
+//         observer.unobserve(entry.target);
+//       }
+//     });
+//   };
+
+//   const options = {
+//     root: null,
+//     rootMarigin: "0px",
+//     threshold: 0,
+//   };
+
+//   const io = new IntersectionObserver(callback, options);
+//   content.forEach((el) => io.observe(el));
+// })
+
+// class TextAnimation {
+//   constructor(el) {
+//     this.DOM = {};
+//     this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
+//     this.chars = this.DOM.el.innerHTML.trim().split("");
+//     this.DOM.el.innerHTML = this.splitText();
+//   }
+
+//   splitText() {
+//     return this.chars.reduce((accu, curr) => {
+//       curr = curr.replace(/\s+/, "&nbsp;");
+//       return accu = `${accu}<span class="char">${curr}</span>`;
+//     },"");
+//   }
+
+//   animate() {
+//     this.DOM.el.classList.toggle("inview");
+//   }
+// }
+// ここから模範解答
+
 document.addEventListener('DOMContentLoaded', function() {
-  const content = document.querySelectorAll('.content');
-  const callback = function(entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const ta = new TextAnimation(entry.target);
-        ta.animate();
-        observer.unobserve(entry.target);
+  const obj = document.querySelectorAll('.content');
+  const callback = function(entries, obserber) {
+    entries.forEach(entry => {
+      if (entries.isIntersecting) {
+        const te = entry.TextAnimation(entry.target);
+        te.animate();
+        observe.unobserve();
+      }else {
       }
     });
   };
 
   const options = {
     root: null,
-    rootMarigin: "0px",
+    rootMargin: "0px",
     threshold: 0,
   };
 
   const io = new IntersectionObserver(callback, options);
-  content.forEach((el) => io.observe(el));
+  obj.forEach((el) => io.observe(el));
 })
-
-class TextAnimation {
-  constructor(el) {
-    this.DOM = {};
-    this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
-    this.chars = this.DOM.el.innerHTML.trim().split("");
-    this.DOM.el.innerHTML = this.splitText();
-  }
-
-  splitText() {
-    return this.chars.reduce((accu, curr) => {
-      curr = curr.replace(/\s+/, "&nbsp;");
-      return accu = `${accu}<span class="char">${curr}</span>`;
-    },"");
-  }
-
-  animate() {
-    this.DOM.el.classList.toggle("inview");
-  }
-}
