@@ -174,17 +174,17 @@ section {
 
   &.inview {
     opacity: 1;
-    & .char {
+    & .moji {
       display: inline-block;
     }
   }
 
-  & .char {
+  & .moji {
     opacity: 0;
   }
 }
 
-.content.inview .char {
+.content.inview .moji {
   @include animation(
     $name: kf-text-animation,
     $duration: 0.5s,

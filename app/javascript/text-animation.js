@@ -87,12 +87,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   const obj = document.querySelectorAll('.content');
-  const callback = function(entries, obserber) {
-    entries.forEach(entry => {
-      if (entries.isIntersecting) {
-        const te = entry.TextAnimation(entry.target);
+  const callback = function(entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const te = new TextAnimation(entry.target);
         te.animate();
-        observe.unobserve();
+        observer.unobserve();
       }else {
       }
     });
@@ -107,3 +107,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const io = new IntersectionObserver(callback, options);
   obj.forEach((el) => io.observe(el));
 })
+
+class TextAnimation {
+  constructor(el) {
+    this.DOM = {};
+    this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
+    this.moji = this.DOM.el.innerHTML.trim().split("");
+    
+    this.DOM.el.innerHTML = this.splitText();
+  }
+
+  animate() {
+    this.DOM.el.classList.toggle('inview');
+  }
+
+  splitText() {
+    return this.moji.reduce((accu, curr) => {
+      curr = curr.replace(/\s+/, '&nbsp;');
+      return `${accu}<span class="moji">${curr}</span>`;
+    },"");
+  }
+}
