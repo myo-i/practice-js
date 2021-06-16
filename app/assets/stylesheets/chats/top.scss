@@ -1,64 +1,215 @@
+// @import "mixin";
+
+// .title {
+//   color: aquamarine;
+//   font-size: 300px;
+//   font-weight: 300;
+//   // margin-top: 1000px;
+//   height: 500px;
+//   background-color: darkred;
+//   // top: 50%;
+
+//   // left: 50%;
+
+//   // transform: translate(-50%, -50%);
+
+//     & .char {
+//       display: inline-block;
+
+//       @include animation (
+//         $name: kf-anime-char,
+//         $duration: 0.5s,
+//         $timing-function: ease-in-out,
+//         $fill-mode: both
+//       );
+
+//       @for $i from 1 through 6 {
+//         &:nth-child(#{$i}) {
+//           animation-delay: $i * 0.04s;
+//         }
+//       }
+//     }
+
+//   // &.char {
+//   //   opacity: 0;
+//   // }
+// }
+
+// .sub-title {
+//   color: chartreuse;
+//   font-size: 150px;
+//   font-weight: 300;
+//   height: 500px;
+//   background-color: blueviolet;
+// }
+
+// .description {
+//   color: darkorange;
+//   font-size: 70px;
+//   height: 500px;
+//   background-color: hotpink;
+// }
+
+// @keyframes kf-anime-char {
+//   0% {
+//     transform: translateY(-50%);
+//     opacity: 0;
+//   }
+
+//   100% {
+//     transform: translateY(0);
+//     opacity: 1;
+//   }
+// }
+
+// ここから模範
+// @import "mixin";
+
+// html {
+//   font-family: "Teko", sans-serif;
+// }
+
+// body {
+//   margin: 0;
+// }
+
+// section {
+//   position: relative;
+
+//   height: 100vh;
+
+//   background-color: teal;
+
+//   &:nth-child(2) {
+//     background-color: mediumvioletred;
+//   }
+
+//   &:nth-child(3) {
+//     background-color: orange;
+//   }
+// }
+
+// .title {
+//   position: absolute;
+
+//   top: 50%;
+
+//   left: 50%;
+
+//   transform: translate(-50%, -50%);
+
+//   color: white;
+
+//   opacity: 0;
+
+//   font-size: 2em;
+
+//   &.inview {
+//     opacity: 1;
+
+//     & .char {
+//       display: inline-block;
+//     }
+//   }
+
+//   & .char {
+//     opacity: 0;
+//   }
+// }
+
+// .title.inview .char {
+//   @include animation(
+//     $name: kf-animate-chars,
+//     $duration: 0.5s,
+//     $timing-function: cubic-bezier(0.39, 1.57, 0.58, 1),
+//     $fill-mode: both
+//   );
+
+//   @for $i from 1 through 30 {
+//     &:nth-child(#{$i}) {
+//       animation-delay: $i * 0.04s;
+//     }
+//   }
+// }
+
+// @keyframes kf-animate-chars {
+//   0% {
+//     opacity: 0;
+
+//     transform: translateY(-50%);
+//   }
+
+//   100% {
+//     opacity: 1;
+
+//     transform: translateY(0);
+//   }
+// }
+// ここまで模範
+
 @import "mixin";
 
-.title {
-  color: aquamarine;
-  font-size: 300px;
-  font-weight: 300;
-  // margin-top: 1000px;
+section {
+  position: relative;
+  background-color: aquamarine;
   height: 500px;
-  background-color: darkred;
-  // top: 50%;
 
-  // left: 50%;
+  &:nth-child(2) {
+    background-color: burlywood;
+  }
 
-  // transform: translate(-50%, -50%);
+  &:nth-child(3) {
+    background-color: chartreuse;
+  }
+}
 
-    & .char {
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+  opacity: 0;
+
+  &.inview {
+    opacity: 1;
+    & .moji {
       display: inline-block;
-
-      @include animation (
-        $name: kf-anime-char,
-        $duration: 0.5s,
-        $timing-function: ease-in-out,
-        $fill-mode: both
-      );
-
-      @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          animation-delay: $i * 0.04s;
-        }
-      }
     }
+  }
 
-  // &.char {
-  //   opacity: 0;
-  // }
-}
-
-.sub-title {
-  color: chartreuse;
-  font-size: 150px;
-  font-weight: 300;
-  height: 500px;
-  background-color: blueviolet;
-}
-
-.description {
-  color: darkorange;
-  font-size: 70px;
-  height: 500px;
-  background-color: hotpink;
-}
-
-@keyframes kf-anime-char {
-  0% {
-    transform: translateY(-50%);
+  & .moji {
     opacity: 0;
+  }
+}
+
+.content.inview .moji {
+  @include animation(
+    $name: kf-text-animation,
+    $duration: 0.5s,
+    $timing-function: ease-in-out,
+    $fill-mode: both
+  );
+
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.1s;
+    }
+  }
+}
+
+@keyframes kf-text-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%)
   }
 
   100% {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0%);
   }
 }
+
+
 
